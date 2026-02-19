@@ -12,7 +12,7 @@ class DownloadTile extends StatelessWidget {
   IconData get iconData => switch (controller.status) {
     == DownloadStatus.notDownloaded => Icons.download,
     == DownloadStatus.downloading => Icons.downloading,
-    == DownloadStatus.downloading => Icons.folder,
+    == DownloadStatus.downloaded => Icons.folder,
     _ => Icons.abc,
   };
 

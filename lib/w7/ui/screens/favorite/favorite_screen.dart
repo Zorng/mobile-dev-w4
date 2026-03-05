@@ -15,7 +15,7 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // 1- Read the globbal song repository
     SongRepository songRepository = context.read<SongRepository>();
-    List<Song> songs = songRepository.fetchSongs();
+    List<Song>  songs = songRepository.fetchSongs();
 
     // 2- Read the globbal settings state
     AppSettingsState settingsState = context.read<AppSettingsState>();

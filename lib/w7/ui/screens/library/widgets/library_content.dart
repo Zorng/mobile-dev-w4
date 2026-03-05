@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 // import '../../../../model/songs/song.dart';
 import '../../../states/player_state.dart';
 import '../../../theme/theme.dart';
-import './song_tile.dart';
+import '../../../common_widgets/song_tile.dart';
 
 class LibraryContent extends StatelessWidget {
   const LibraryContent({super.key});

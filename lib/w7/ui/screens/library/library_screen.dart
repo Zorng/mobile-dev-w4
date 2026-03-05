@@ -19,7 +19,7 @@ class LibraryScreen extends StatelessWidget {
       color: settingsState.theme.backgroundColor,
       child: MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (context) => PlayerState()),
+          //ChangeNotifierProvider(create: (context) => PlayerState()),
           ChangeNotifierProvider(
           create: (context) => LibraryViewModel(playerState: context.read<PlayerState>(), songRepository: context.read<SongRepository>()),)
         ],

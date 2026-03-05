@@ -22,30 +22,32 @@ class LibraryContent extends StatelessWidget {
 
     LibraryViewModel vm = context.watch<LibraryViewModel>();
 
-    return vm.isLoading? Scaffold(body: CircularProgressIndicator(),) :
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 16),
-          Text("Library", style: AppTextStyles.heading),
+    return vm.isLoading
+        ? Scaffold(body: CircularProgressIndicator())
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 16),
+              Text("Library", style: AppTextStyles.heading),
 
-          SizedBox(height: 50),
+              SizedBox(height: 50),
 
-          Expanded(
-            child: ListView.builder(
-              itemCount: vm.songs.length,
-              itemBuilder: (context, index) => SongTile(
-                song: vm.songs[index],
-                isPlaying: playerState.currentSong == vm.songs[index],
-                onTap: () {
-                  playerState.start(vm.songs[index]);
-                },
+              Expanded(
+                child: ListView.builder(
+                  itemCount: vm.songs.length,
+                  itemBuilder: (context, index) => SongTile(
+                    song: vm.songs[index],
+                    isPlaying: playerState.currentSong == vm.songs[index],
+                    onTap: () {
+                      vm.play(vm.songs[index]);
+                    },
+                    onStop: () {
+                      vm.stop();
+                    },
+                  ),
+                ),
               ),
-            ),
-          ),
-        ],
-    );
+            ],
+          );
   }
 }
-
-

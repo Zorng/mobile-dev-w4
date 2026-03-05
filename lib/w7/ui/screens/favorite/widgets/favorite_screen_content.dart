@@ -25,6 +25,7 @@ class FavoriteScreenContent extends StatelessWidget {
         vm.recentSongs.isEmpty
             ? Text("No recent songs")
             : Expanded(
+              flex: 1,
                 child: ListView.builder(
                   itemCount: vm.recentSongs.length,
                   itemBuilder: (context, index) => SongTile(
@@ -41,11 +42,12 @@ class FavoriteScreenContent extends StatelessWidget {
               ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Recent Songs", style: AppTextStyles.body),
+          child: Text("Recommended Songs", style: AppTextStyles.body),
         ),
         vm.recommendedSongs.isEmpty
             ? Text("No Recommendations")
             : Expanded(
+              flex: 1,
                 child: ListView.builder(
                   itemCount: vm.recommendedSongs.length,
                   itemBuilder: (context, index) => SongTile(

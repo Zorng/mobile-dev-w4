@@ -27,11 +27,13 @@ class FavoriteScreenViewModel with ChangeNotifier {
 
   void play(Song song) {
     playerState.start(song);
+    notifyListeners();
     repository.updateRecentSongs(song);
   }
 
   void stop() {
     playerState.stop();
+    notifyListeners();
   }
 
   Song? get currentSong => playerState.currentSong;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_dev_w4/w7/data/repositories/songs/song_repository.dart';
 import 'package:mobile_dev_w4/w7/data/repositories/user_history/user_history_repository.dart';
 import 'package:mobile_dev_w4/w7/ui/screens/library/view_model/library_view_model.dart';
+import 'package:mobile_dev_w4/w7/ui/screens/library/widgets/library_content.dart';
 import 'package:mobile_dev_w4/w7/ui/states/player_state.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,7 @@ class LibraryScreen extends StatelessWidget {
           playerState: context.read<PlayerState>(),
           songRepository: context.read<SongRepository>(),
         ),
+        child: const LibraryContent(),
       ),
     );
   }

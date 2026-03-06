@@ -4,7 +4,8 @@ import 'package:mobile_dev_w4/w7/model/songs/song.dart';
 class UserHistoryRepositoryMock implements UserHistoryRepository {
   //recent songs should behave like a cache
   static const cacheSize = 5;
-  final List<Song> _recentSongs = List.filled(cacheSize, Song.dummy(), growable: false);
+  // final List<Song> _recentSongs = List.filled(cacheSize, Song.dummy(), growable: false);
+  final List<Song> _recentSongs = [];
   final List<Song> _recommendedSongs = [];
 
   @override

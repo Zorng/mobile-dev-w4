@@ -53,11 +53,7 @@ class _MyAppState extends State<MyApp> {
             });
           },
           selectedItemColor: settingsState.theme.color,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
+          items: [         
              BottomNavigationBarItem(
               icon: Icon(Icons.library_music),
               label: 'Library',

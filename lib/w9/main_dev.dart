@@ -1,3 +1,5 @@
+import 'package:mobile_dev_w4/w9/data/repositories/artists/artist_repostiory_firebase.dart';
+import 'package:mobile_dev_w4/w9/data/repositories/artists/artitst_repository.dart';
 import 'package:provider/provider.dart';
  
 import 'data/repositories/songs/song_repository_firebase.dart';
@@ -23,6 +25,8 @@ List<InheritedProvider> get devProviders {
     ChangeNotifierProvider<AppSettingsState>(
       create: (_) => AppSettingsState(repository: appSettingsRepository),
     ),
+
+    Provider<ArtitstRepository>(create: (_) => ArtistRepostioryFirebase()),
   ];
 }
 

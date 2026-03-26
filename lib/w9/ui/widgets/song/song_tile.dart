@@ -5,6 +5,7 @@ import '../../../model/songs/song.dart';
 class SongTile extends StatelessWidget {
   const SongTile({
     super.key,
+
     required this.song,
     required this.isPlaying,
     required this.onTap,
@@ -21,11 +22,13 @@ class SongTile extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(15)
+          borderRadius: BorderRadius.circular(15),
         ),
         child: ListTile(
+          leading: CircleAvatar(backgroundImage: NetworkImage(song.imageUrl.toString()),),
           onTap: onTap,
           title: Text(song.title),
+          subtitle: Text("${song.duration.inMinutes.toString()} mins"),
           trailing: Text(
             isPlaying ? "Playing" : "",
             style: TextStyle(color: Colors.amber),

@@ -11,7 +11,7 @@ class LibraryViewModel extends ChangeNotifier {
   final PlayerState playerState;
   final ArtitstRepository artitstRepository;
 
-  AsyncValue<List<Song>> songsValue = AsyncValue.loading();
+  //AsyncValue<List<Song>> songsValue = AsyncValue.loading();
 
   AsyncValue<List<Map<Song, Artist>>> songsXInfo = AsyncValue.loading();
 
@@ -38,7 +38,8 @@ class LibraryViewModel extends ChangeNotifier {
 
   void fetchSong() async {
     // 1- Loading state
-    songsValue = AsyncValue.loading();
+    //songsValue = AsyncValue.loading();
+    songsXInfo = AsyncValue.loading();
     notifyListeners();
 
     try {
@@ -51,16 +52,14 @@ class LibraryViewModel extends ChangeNotifier {
 
       List<Map<Song, Artist>> songsWithInfo = songs.map((song) {
         final artist = idArtistMap[song.artistId];
-        return {
-          song: artist!
-        };
+        return {song: artist!};
       }).toList();
-      songsValue = AsyncValue.success(songs);
+      //songsValue = AsyncValue.success(songs);
       songsXInfo = AsyncValue.success(songsWithInfo);
       //get song's extra info
     } catch (e) {
       // 3- Fetch is unsucessfull
-      songsValue = AsyncValue.error(e);
+      songsXInfo = AsyncValue.error(e);
     }
     notifyListeners();
   }

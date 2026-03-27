@@ -15,18 +15,18 @@ class LibraryContent extends StatelessWidget {
     // 1- Read the globbal song repository
     LibraryViewModel mv = context.watch<LibraryViewModel>();
 
-    AsyncValue<List<Song>> asyncValue = mv.songsValue;
+    //AsyncValue<List<Song>> asyncValue = mv.songsValue;
     AsyncValue<List<Map<Song, Artist>>> asyncSongXInfo = mv.songsXInfo;
 
     Widget content;
-    switch (asyncValue.state) {
+    switch (asyncSongXInfo.state) {
       case AsyncValueState.loading:
         content = Center(child: CircularProgressIndicator());
         break;
       case AsyncValueState.error:
         content = Center(
           child: Text(
-            'error = ${asyncValue.error!}',
+            'error = ${asyncSongXInfo.error!}',
             style: TextStyle(color: Colors.red),
           ),
         );

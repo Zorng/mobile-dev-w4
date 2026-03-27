@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_dev_w4/w9/data/repositories/artists/artitst_repository.dart';
+import 'package:mobile_dev_w4/w9/model/artists/artist.dart';
 import '../../../../data/repositories/songs/song_repository.dart';
 import '../../../states/player_state.dart';
 import '../../../../model/songs/song.dart';
@@ -7,10 +9,17 @@ import '../../../utils/async_value.dart';
 class LibraryViewModel extends ChangeNotifier {
   final SongRepository songRepository;
   final PlayerState playerState;
+  final ArtitstRepository artitstRepository;
 
   AsyncValue<List<Song>> songsValue = AsyncValue.loading();
 
-  LibraryViewModel({required this.songRepository, required this.playerState}) {
+  AsyncValue<List<Map<Song, Artist>>> songsXInfo = AsyncValue.loading();
+
+  LibraryViewModel({
+    required this.songRepository,
+    required this.playerState,
+    required this.artitstRepository,
+  }) {
     playerState.addListener(notifyListeners);
 
     // init
@@ -35,13 +44,25 @@ class LibraryViewModel extends ChangeNotifier {
     try {
       // 2- Fetch is successfull
       List<Song> songs = await songRepository.fetchSongs();
+
+      List<Artist> artists = await artitstRepository.getAllArtist();
+
+      Map<String, Artist> idArtistMap = {for (var a in artists) a.id: a};
+
+      List<Map<Song, Artist>> songsWithInfo = songs.map((song) {
+        final artist = idArtistMap[song.artistId];
+        return {
+          song: artist!
+        };
+      }).toList();
       songsValue = AsyncValue.success(songs);
+      songsXInfo = AsyncValue.success(songsWithInfo);
+      //get song's extra info
     } catch (e) {
       // 3- Fetch is unsucessfull
       songsValue = AsyncValue.error(e);
     }
-     notifyListeners();
-
+    notifyListeners();
   }
 
   bool isSongPlaying(Song song) => playerState.currentSong == song;

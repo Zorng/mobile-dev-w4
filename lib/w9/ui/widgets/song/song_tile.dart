@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_dev_w4/w9/model/artists/artist.dart';
 
 import '../../../model/songs/song.dart';
 
@@ -9,8 +10,10 @@ class SongTile extends StatelessWidget {
     required this.song,
     required this.isPlaying,
     required this.onTap,
+    required this.artist,
   });
 
+  final Artist artist;
   final Song song;
   final bool isPlaying;
   final VoidCallback onTap;
@@ -25,10 +28,12 @@ class SongTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         child: ListTile(
-          leading: CircleAvatar(backgroundImage: NetworkImage(song.imageUrl.toString()),),
+          leading: CircleAvatar(
+            backgroundImage: NetworkImage(song.imageUrl.toString()),
+          ),
           onTap: onTap,
           title: Text(song.title),
-          subtitle: Text("${song.duration.inMinutes.toString()} mins"),
+          subtitle: Text("${song.duration.inMinutes.toString()} mins  ${artist.name} - ${artist.genre.value}"),
           trailing: Text(
             isPlaying ? "Playing" : "",
             style: TextStyle(color: Colors.amber),

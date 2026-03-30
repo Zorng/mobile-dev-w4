@@ -48,4 +48,20 @@ class SongRepositoryFirebase extends SongRepository {
 
   @override
   Future<Song?> fetchSongById(String id) async {}
+
+  @override
+  Future<void> incrementLike(Song song) async {
+    final int newLike = song.likes + 1;
+
+    final http.Response response = await http.put(
+      songsUri.replace(path: '/songs/${song.id}/likes.json'),
+      body: json.encode(newLike),
+    );
+
+    if (response.statusCode == 200) {
+      print("ok");
+    } else {
+      throw Exception("cannot update");
+    }
+  }
 }

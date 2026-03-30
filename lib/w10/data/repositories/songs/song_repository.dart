@@ -6,4 +6,6 @@ abstract class SongRepository {
   Future<List<Song>> getSongs({bool forceFetch}); // get from cached
 
   Future<Song?> fetchSongById(String id);
+
+  Future<void> incrementLike(Song song);
 }

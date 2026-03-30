@@ -36,17 +36,23 @@ class LibraryViewModel extends ChangeNotifier {
     fetchSong();
   }
 
-  void fetchSong() async {
+  void refresh() async {
+    fetchSong(forceFetch: true);
+  }
+
+  void fetchSong({bool forceFetch = false}) async {
     // 1- Loading state
     data = AsyncValue.loading();
     notifyListeners();
 
     try {
       // 1- Fetch songs
-      List<Song> songs = await songRepository.fetchSongs();
+      List<Song> songs = await songRepository.getSongs(forceFetch: forceFetch);
 
       // 2- Fethc artist
-      List<Artist> artists = await artistRepository.fetchArtists();
+      List<Artist> artists = await artistRepository.getArtists(
+        forceFetch: forceFetch,
+      );
 
       // 3- Create the mapping artistid-> artist
       Map<String, Artist> mapArtist = {};
@@ -62,7 +68,6 @@ class LibraryViewModel extends ChangeNotifier {
           .toList();
 
       this.data = AsyncValue.success(data);
-
     } catch (e) {
       // 3- Fetch is unsucessfull
       data = AsyncValue.error(e);

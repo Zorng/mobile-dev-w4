@@ -1,16 +1,16 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:mobile_dev_w4/w10/network/network.dart';
 
 import '../../../model/songs/song.dart';
 import '../../dtos/song_dto.dart';
 import 'song_repository.dart';
 
 class SongRepositoryFirebase extends SongRepository {
-  final Uri songsUri = Uri.https(
-    'test-a2a77-default-rtdb.asia-southeast1.firebasedatabase.app',
-    '/songs.json',
-  );
+  final Uri songsUri = Network.baseUri.replace(path: '/songs.json');
+
+  List<Song>? _cachedSongs;
 
   @override
   Future<List<Song>> fetchSongs() async {
@@ -24,11 +24,26 @@ class SongRepositoryFirebase extends SongRepository {
       for (final entry in songJson.entries) {
         result.add(SongDto.fromJson(entry.key, entry.value));
       }
+      _cachedSongs = result;
       return result;
     } else {
       // 2- Throw expcetion if any issue
       throw Exception('Failed to load posts');
     }
+  }
+
+  @override
+  Future<List<Song>> getSongs({bool forceFetch = false}) async {
+    if (_cachedSongs != null && forceFetch != true) {
+      print("get song from cached");
+      return _cachedSongs!;
+    }
+
+    final songs = await fetchSongs();
+
+    _cachedSongs = songs;
+    print("get song from api");
+    return songs;
   }
 
   @override

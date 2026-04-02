@@ -8,4 +8,7 @@ abstract class SongRepository {
   Future<Song?> fetchSongById(String id);
 
   Future<void> incrementLike(Song song);
+
+  Future<List<Song>> fetchSongByArtistId(String id, {bool forceFetch});
+
 }

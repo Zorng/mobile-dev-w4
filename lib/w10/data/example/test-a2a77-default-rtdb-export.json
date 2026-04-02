@@ -80,5 +80,89 @@
       "imageUrl": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=300&h=300&fit=crop&q=80",
       "likes": 72
     }
-  }
+  },
+  
+    "comments": {
+      "comment_1": {
+        "artistId": "artist_1",
+        "content": "That high note in the bridge was absolutely effortless!"
+      },
+      "comment_2": {
+        "artistId": "artist_2",
+        "content": "The vocal control on this acoustic track is insane."
+      },
+      "comment_3": {
+        "artistId": "artist_3",
+        "content": "I love how raw and emotional the lyrics feel here."
+      },
+      "comment_4": {
+        "artistId": "artist_4",
+        "content": "The harmonies in the chorus give me chills every time."
+      },
+      "comment_5": {
+        "artistId": "artist_5",
+        "content": "Such a unique tone; I'd know that voice anywhere."
+      },
+      "comment_6": {
+        "artistId": "artist_1",
+        "content": "The energy in this performance is just contagious."
+      },
+      "comment_7": {
+        "artistId": "artist_3",
+        "content": "A perfect blend of pop and soulful melodies."
+      },
+      "comment_8": {
+        "artistId": "artist_2",
+        "content": "This vibrato is so smooth and perfectly timed."
+      },
+      "comment_9": {
+        "artistId": "artist_4",
+        "content": "The storytelling in this ballad is top-tier."
+      },
+      "comment_10": {
+        "artistId": "artist_5",
+        "content": "Incredible stage presence, even in just the audio."
+      },
+      "comment_11": {
+        "artistId": "artist_2",
+        "content": "The falsetto parts are so crisp and clear."
+      },
+      "comment_12": {
+        "artistId": "artist_1",
+        "content": "This artist just keeps evolving with every new release."
+      },
+      "comment_13": {
+        "artistId": "artist_4",
+        "content": "The breath control during that long run was amazing."
+      },
+      "comment_14": {
+        "artistId": "artist_3",
+        "content": "I've had this hook stuck in my head all day!"
+      },
+      "comment_15": {
+        "artistId": "artist_5",
+        "content": "The production perfectly complements the vocal range."
+      },
+      "comment_16": {
+        "artistId": "artist_1",
+        "content": "You can really feel the passion in every single lyric."
+      },
+      "comment_17": {
+        "artistId": "artist_3",
+        "content": "Best vocal performance I've heard this year, hands down."
+      },
+      "comment_18": {
+        "artistId": "artist_2",
+        "content": "The way the bridge builds up to the final chorus is brilliant."
+      },
+      "comment_19": {
+        "artistId": "artist_5",
+        "content": "Such a versatile singer, jumping between genres so easily."
+      },
+      "comment_20": {
+        "artistId": "artist_4",
+        "content": "Pure talent. No autotune needed for this level of skill."
+      }
+    }
+  
 }

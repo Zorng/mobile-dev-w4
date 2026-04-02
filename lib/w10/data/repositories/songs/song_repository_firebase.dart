@@ -72,4 +72,14 @@ class SongRepositoryFirebase extends SongRepository {
       throw Exception("cannot update");
     }
   }
+
+  @override
+  Future<List<Song>> fetchSongByArtistId(
+    String id, {
+    bool forceFetch = false,
+  }) async {
+    final songs = await getSongs(forceFetch: forceFetch);
+
+    return songs.where((s) => s.artistId == id).toList();
+  }
 }

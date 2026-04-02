@@ -50,16 +50,24 @@ class SongRepositoryFirebase extends SongRepository {
   Future<Song?> fetchSongById(String id) async {}
 
   @override
-  Future<void> incrementLike(Song song) async {
+  Future<Song?> incrementLike(Song song) async {
     final int newLike = song.likes + 1;
 
     final http.Response response = await http.put(
-      songsUri.replace(path: '/songs/${song.id}/likes.json'),
-      body: json.encode(newLike),
+      songsUri.replace(path: '/songs/${song.id}.json'),
+      body: json.encode(SongDto.toJson(song.copyWith(likes: newLike))),
+      //body: json.encode(song.copyWith(likes: newLike)),
     );
 
     if (response.statusCode == 200) {
-      print("ok");
+      Map<String, dynamic> songJson = json.decode(response.body);
+
+      Song result = SongDto.fromJson(song.id, songJson);
+      int? index = _cachedSongs?.indexWhere((s) => s.id == song.id);
+      _cachedSongs?.removeAt(index!);
+      _cachedSongs?.insert(index!, result);
+
+      return result;
     } else {
       throw Exception("cannot update");
     }

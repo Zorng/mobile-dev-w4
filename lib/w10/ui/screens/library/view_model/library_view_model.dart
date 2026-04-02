@@ -43,6 +43,7 @@ class LibraryViewModel extends ChangeNotifier {
   void likeSong(Song song) async {
     try {
       await songRepository.incrementLike(song);
+      fetchSong();
     } catch (e) {
       print(e);
     }
